@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost/cxamplified", { useNewUrlParser: true, use
     if (err)
     console.log("error changed  connecting to database  ", err); 
     else 
-    console.log("Database connected !!! ")
+    console.log("Database connected ... wow !!! ")
 
 }); 
 app.set('view engine', 'ejs'); 
