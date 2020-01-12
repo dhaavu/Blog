@@ -8,7 +8,7 @@ var passportLocalMongoose  = require("passport-local-mongoose");
 
 mongoose.connect("mongodb://localhost/cxamplified", { useNewUrlParser: true, useUnifiedTopology: true } ,  function (err){
     if (err)
-    console.log("error connecting to database  ", err); 
+    console.log("error changed  connecting to database  ", err); 
     else 
     console.log("Database connected !!! ")
 
