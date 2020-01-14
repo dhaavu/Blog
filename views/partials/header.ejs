@@ -1,0 +1,45 @@
+<head>
+    <title>CX Amplified </title>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" style="border: 1px solid #8f8b8b; padding:5px 10px" href="/">CX Amplified </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About </a>
+            </li>
+      
+          </ul>
+          <% if (!currentUser) { %>
+          <div style=" color:white; border: 1px solid grey; padding:1px 20px; margin:2px 5px; border-radius:10%">
+            <a href="/login" style="color:#e1e1e1;">Login</a>
+          </div>      
+          <div style="color:white; border: 1px solid grey; padding:1px 20px; margin:2px 5px; border-radius:10%">
+            <a href="/register" style="color:#e1e1e1 ">Register</a>    
+         </div>
+         <% } else { %> 
+        <div style="color:white; border: 1px solid grey; padding:1px 20px; margin:2px 5px; border-radius:10%">
+            <a href="" style="color:#e1e1e1"><%= currentUser.username %> </a></div>
+        </div>
+         <div style="color:white; border: 1px solid grey; padding:1px 20px; margin:2px 5px; border-radius:10%">
+            <a href="/logout" style="color:#e1e1e1">Log Out</a></div>
+        </div>
+        <% } %>
+    </nav>
