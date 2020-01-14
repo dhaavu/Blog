@@ -6,7 +6,8 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local"); 
 var passportLocalMongoose  = require("passport-local-mongoose"); 
 var bodyParser = require('body-parser'); 
-mongoose.connect("mongodb://localhost/cxamplified", { useNewUrlParser: true, useUnifiedTopology: true } ,  function (err){
+//mongodb://localhost/cxamplified
+mongoose.connect("mongodb+srv://dhaval:Welcome30@cluster0-71yob.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true } ,  function (err){
     if (err)
     console.log("error changed  connecting to database  ", err); 
     else 
