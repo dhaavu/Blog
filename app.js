@@ -14,7 +14,7 @@ mongoose.connect("mongodb+srv://dhaval:Welcome30@cluster0-71yob.mongodb.net/test
     console.log("Database connected !!! ")
 
 }); 
-
+app.use(express.static('public'))
 app.use(require("express-session")({secret: "Dhaval is awesome", resave: false, saveUninitialized: false})); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 

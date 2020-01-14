@@ -1,0 +1,114 @@
+.navigation{
+    border-bottom: .3px solid #cececed9;
+    background-color: #ffffff!important;
+    box-shadow: 1px 3px 15px #d7d7d7;
+}
+
+.navanchor{
+ color:grey;
+ padding:1px 20px; 
+ margin:2px 5px; 
+}
+
+.navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
+    color: #3e3d3d ;
+}
+
+.logo{
+
+    color: #3e3d3d !important;
+    margin-right: 4%;
+}
+
+.navanchor a {
+
+    color: #3e3d3d !important;
+}
+
+.nav-link{
+
+    color:  #3e3d3d !important; 
+}
+
+#infinity {
+    position: relative;
+    width: 58px;
+    box-sizing: content-box;
+    top: -11px;
+    margin-right: 20px;
+  }
+  #infinity:before,
+  #infinity:after {
+    content: "";
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #3e3d3d ;
+    border-radius: 50px 50px 0 50px;
+    transform: rotate(-45deg);
+  }
+  #infinity:after {
+    left: auto;
+    right: 0;
+    border-radius: 50px 50px 50px 0;
+    transform: rotate(45deg);
+  }
+
+  .navbar-toggler{
+      background-color: #3e3d3d;
+  }
+
+
+
+  .header {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .header video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+  
+  .header .container {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+    z-index: 1;
+  }
+  
+  @media (pointer: coarse) and (hover: none) {
+    .header {
+      background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+    }
+    .header video {
+      display: none;
+    }
+  }
+  
