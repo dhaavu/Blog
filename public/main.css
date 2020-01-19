@@ -133,3 +133,12 @@ box-shadow: 1px 3px 15px #d7d7d7;
   box-shadow: 1px 3px 15px #d7d7d7;
 }
   
+.whytext{
+
+  margin:3rem; 
+  border: 1px solid grey; 
+}
+
+.whyCx img{
+  width:100%; 
+}
