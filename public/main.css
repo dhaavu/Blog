@@ -135,10 +135,19 @@ box-shadow: 1px 3px 15px #d7d7d7;
   
 .whytext{
 
-  margin:3rem; 
-  border: 1px solid grey; 
+  border: 1px solid #808080a1;
+  padding: 35px;
 }
 
 .whyCx img{
   width:100%; 
+}
+
+.parallax {
+  background-image: url(https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
