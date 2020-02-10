@@ -6,8 +6,8 @@
 
 .navanchor{
  color:grey;
- padding:1px 20px; 
- margin:2px 5px; 
+ padding:1px 20px;
+ margin:2px 5px;
 }
 
 .navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
@@ -27,7 +27,7 @@
 
 .nav-link{
 
-    color:  #3e3d3d !important; 
+    color:  #3e3d3d !important;
 }
 
 #infinity {
@@ -71,7 +71,7 @@
     width: 100%;
     overflow: hidden;
   }
-  
+
   .header video {
     position: absolute;
     top: 90%;
@@ -86,12 +86,12 @@
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
   }
-  
+
   .header .container {
     position: relative;
     z-index: 2;
   }
-  
+
   .header .overlay {
     position: absolute;
     top: 0;
@@ -102,7 +102,7 @@
     opacity: 0.3;
     z-index: 1;
   }
-  
+
   /* @media (pointer: coarse) and (hover: none) {
     .header {
       background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
@@ -113,11 +113,11 @@
   } */
 
 .row{
-  margin-right:0px; 
-  margin-left:0px; 
+  margin-right:0px;
+  margin-left:0px;
 }
 .card{
-  border:none; 
+  border:none;
 }
 .card-img{
 box-shadow: 1px 3px 15px #d7d7d7;
@@ -132,7 +132,7 @@ box-shadow: 1px 3px 15px #d7d7d7;
   margin: 10px;
   box-shadow: 1px 3px 15px #d7d7d7;
 }
-  
+
 .whytext{
 
   border: 1px solid #808080a1;
@@ -140,14 +140,29 @@ box-shadow: 1px 3px 15px #d7d7d7;
 }
 
 .whyCx img{
-  width:100%; 
+  width:100%;
 }
 
 .parallax {
   background-image: url(https://images.pexels.com/photos/1509428/pexels-photo-1509428.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   min-height: 500px;
-  background-attachment: fixed;
+  /* background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+}
+
+.col-text{
+
+  padding:0px !important; 
+}
+
+.col-image{
+
+  padding:0px !important; 
+}
+
+.active {
+
+border-bottom: 2px solid #c82333;
 }
