@@ -1,15 +1,18 @@
 <%- include('./partials/header'); -%>
-<div class="container text-center">
-    <h1> Login</h1>
-    <div class="d-flex p-2 text-left">  
+<div class="container text-center" style="margin-top:50px; ">
+    <div class="container" style="  box-shadow: 1px 3px 15px #d7d7d7; max-width:400px; background: whitesmoke; padding:30px; ">
+         <h4>Login</h4>
+         <div class="d-flex p-2">  
         
-        <form action="/login" method="POST" > 
-            <h5>Username:</h5> 
-            <input class="form-control"  type = "text" name="username" placeholder="Username">
-            <h5>Password</h5> 
-            <input  class="form-control" type="password" placeholder="Password" name="password"> 
-            <button class="btn btn-success" style="display:block;margin-top:20px; ">Login</button>
-        </form> 
+            <form class="text-left" style="width:100%;" action="/login" method="POST" > 
+                <p>Username:</p> 
+                <input class="form-control"  type = "text" name="username" placeholder="Username">
+                <p>Password</p> 
+                <input  class="form-control" type="password" placeholder="Password" name="password"> 
+                <button class="btn btn-success" style="display:block;margin-top:20px; width:100%; ">Login</button>
+            </form> 
+        </div>
+     
     </div>
  
 </div>

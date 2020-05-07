@@ -1,12 +1,19 @@
 <%- include('./partials/header'); -%>
-<h1> Register</h1>
-<form action="/register" method="POST" > 
-    <h5>Username:</h5> 
-    <input type = "text" name="username" placeholder="User Name">
-    <h5>Password</h5> 
-    <input type="password" placeholder="Password" name="password"> 
-    <button>Register</button>
-</form>
+
+<div class="container" style="margin-top:50px;">
+    <div class="container text-left" style=" box-shadow: 1px 3px 15px #d7d7d7; padding:50px; max-width: 450px; background: whitesmoke; padding:30px;">
+        <h5 class="text-center"> Register</h5>
+        <form action="/register" method="POST" style="width: 100%;" > 
+            <p style="padding-top:5px; ">Username:</p> 
+            <input class="form-control" type = "text" name="username" placeholder="User Name" style="width: 100%;"> 
+            <p style="padding-top:5px; ">Password</p> 
+            <input  class="form-control" type="password" placeholder="Password" name="password" style="width: 100%;"> 
+            <button class="btn btn-success" style="display:block;margin-top:20px; width:100%;">Register</button>
+        </form>
+    </div>
+    
+</div>
+
 
 
 
