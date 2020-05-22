@@ -7,6 +7,8 @@ var LocalStrategy = require("passport-local");
 var passportLocalMongoose  = require("passport-local-mongoose");
 var bodyParser = require('body-parser');
 var rellax = require("rellax"); 
+var flash = require("connect-flash"); 
+
 //mongodb://localhost/cxamplified
 mongoose.connect("mongodb+srv://dhaval:Welcome30@cluster0-71yob.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true } ,  function (err){
     if (err)
@@ -16,6 +18,7 @@ mongoose.connect("mongodb+srv://dhaval:Welcome30@cluster0-71yob.mongodb.net/test
 
 });
 app.use(express.static('public'))
+app.use(flash()); 
 app.use(require("express-session")({secret: "Dhaval is awesome", resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -28,6 +31,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.use(function(req, res, next){
     res.locals.currentUser= req.user;
+    res.locals.error=req.flash("error"); 
+    res.locals.success=req.flash("success"); 
+    
     next();
 })
 
@@ -69,11 +75,13 @@ app.post("/login", passport.authenticate("local", {
         successRedirect:"/",
         failureRedirect:"/login"
     }), function(req, res){
+        
            }
         );
 
 app.get("/logout", function (req,res){
     req.logout();
+    req.flash("success", "Logged you out!!")
     res.redirect("/");
 })
 
@@ -81,6 +89,8 @@ function isLoggedIn(req, res, next ){
     if(req.isAuthenticated()){
         return next();
     }
+    console.log("Not logged in")
+    req.flash("error", "You are not logged in !!!")
     res.redirect("/login");
 
 }
@@ -90,7 +100,7 @@ app.get('/', function (req, res){
 
 });
 
-app.get('/detail', function (req, res)
+app.get('/detail', isLoggedIn,   function (req, res)
 {
     res.render('detail');
 
