@@ -107,18 +107,13 @@ app.get('/reset/:token', function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
       req.flash('error', 'Password reset token is invalid or has expired.');
-      return res.redirect('/forgot');
+      return res.redirect('/');
     }
     res.render('reset', {token: req.params.token});
   });
 });
 
-app.get('/reset', function(req, res) {
- 
-    res.render('reset');
-  });
-
-  app.get('/program', function(req, res) {
+app.get('/program', function(req, res) {
  
     res.render('program');
   });
