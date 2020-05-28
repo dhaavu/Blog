@@ -1,0 +1,14 @@
+<%- include('./partials/header'); -%>
+
+<div class="container" style="margin-top:50px;">
+    <div class="container text-left" style=" box-shadow: 1px 3px 15px #d7d7d7; padding:50px; max-width: 450px; background: whitesmoke; padding:30px;">
+        <h5 class="text-center"> Forgot Password</h5>
+        <form id="forgotSubmit" autocomplete="off" action="/forgot" method="POST" style="width: 100%;"  > 
+            <label style="padding-top:5px; ">email</label> 
+            <input  class="form-control" type="email" placeholder="email" name="email" style="width: 100%;" required> 
+            <button class="btn btn-success" style="display:block;margin-top:20px; width:100%;">Submit</button>
+        </form>
+    </div>
+
+<%- include('./partials/footer') -%>
+

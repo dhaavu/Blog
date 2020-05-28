@@ -78,9 +78,12 @@ app.get('/login', function(req, res){
 
 app.post("/login", passport.authenticate("local", {
         successRedirect:"/",
-        failureRedirect:"/login"
+        successFlash: "Welcome back!!!", 
+        failureRedirect:"/login", 
+        failureFlash: "Invalid username or password."
     }), function(req, res){
-        
+      console.log("successful login"); 
+        req.flash("success", "Welcome back!!!!"); 
            }
         );
 
@@ -99,6 +102,31 @@ function isLoggedIn(req, res, next ){
     res.redirect("/login");
 
 }
+
+app.get('/reset/:token', function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot');
+    }
+    res.render('reset', {token: req.params.token});
+  });
+});
+
+app.get('/reset', function(req, res) {
+ 
+    res.render('reset');
+  });
+
+  app.get('/program', function(req, res) {
+ 
+    res.render('program');
+  });
+
+// forgot password
+app.get('/forgot', function(req, res) {
+  res.render('forgot');
+});
 
 app.post('/forgot', function(req, res, next) {
     async.waterfall([
@@ -127,13 +155,13 @@ app.post('/forgot', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: 'learntocodeinfo@gmail.com',
+            user: process.env.GMAILU,
             pass: process.env.GMAILPW
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'learntocodeinfo@gmail.com',
+          from: process.env.GMAILU,
           subject: 'Node.js Password Reset',
           text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -152,8 +180,57 @@ app.post('/forgot', function(req, res, next) {
     });
   });
   
+  
 
-
+  app.post('/reset/:token', function(req, res) {
+    async.waterfall([
+      function(done) {
+        User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+          if (!user) {
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('back');
+          }
+          if(req.body.password === req.body.confirm) {
+            user.setPassword(req.body.password, function(err) {
+              user.resetPasswordToken = undefined;
+              user.resetPasswordExpires = undefined;
+  
+              user.save(function(err) {
+                req.logIn(user, function(err) {
+                  done(err, user);
+                });
+              });
+            })
+          } else {
+              req.flash("error", "Passwords do not match.");
+              return res.redirect('back');
+          }
+        });
+      },
+      function(user, done) {
+        var smtpTransport = nodemailer.createTransport({
+          service: 'Gmail', 
+          auth: {
+            user: process.env.GMAILU,
+            pass: process.env.GMAILPW
+          }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: process.env.GMAILU,
+          subject: 'Your password has been changed',
+          text: 'Hello,\n\n' +
+            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+          req.flash('success', 'Success! Your password has been changed.');
+          done(err);
+        });
+      }
+    ], function(err) {
+      res.redirect('/');
+    });
+  });
 
 
 
