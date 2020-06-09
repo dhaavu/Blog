@@ -11,6 +11,8 @@ var flash = require("connect-flash");
 var async = require("async"); 
 var nodemailer = require("nodemailer"); 
 var crypto = require("crypto"); 
+var Blog  = require("./models/blog"); 
+var Comment     = require("./models/comments"); 
 
 
 //mongodb://localhost/cxamplified
@@ -235,7 +237,16 @@ app.post('/forgot', function(req, res, next) {
 
 app.get('/', function (req, res){
 
-    res.render('home');
+  Blog.find( {},  function(err, allBlogs){
+    if(err){
+        console.log(err);
+        res.render("maintenence"); 
+    } else {
+      console.log(allBlogs); 
+       res.render("home",{Blogs:allBlogs});
+    }
+ });
+
 
 });
 
@@ -243,9 +254,55 @@ app.get('/detail', isLoggedIn,   function (req, res)
 {
     res.render('detail');
 
-})
+}); 
+
+app.get('/settings', isLoggedIn,   function (req, res)
+{
+    res.render('settings');
+
+}); 
+
+app.get('/createBlog', isLoggedIn,   function (req, res)
+{
+    res.render('createBlog');
+
+}); 
+
+app.post("/createBlog", isLoggedIn, function(req, res){
+  var username = req.body.username;
+  var title=req.body.title; 
+  var image = req.body.image;
+  var category = req.body.category; 
+  var html = req.body.html; 
+  var created = req.body.created; 
+  var updated = req.body.created; 
+  var description = req.body.description;
+  var author = {
+      id: req.user._id,
+      username: req.user.username
+  }
+  var updatedBy = {
+    id: req.user._id,
+    username: req.user.username
+}
+  var newBlog = {username: username, created:created, updated:updated , updatedBy:updatedBy, image: image, description: description, author:author, category:category, title:title, html:html}
+  // Create a new campground and save to DB
+  Blog.create(newBlog, function(err, newlyCreated){
+      if(err){
+          console.log(err);
+          req.flash("error", "Error posting the blog: " + err); 
+      } else {
+          //redirect back to campgrounds page
+          console.log(newlyCreated);
+          req.flash("success", "Blog posted successfully"); 
+          res.redirect("/");
+      }
+  });
+});
 
 app.listen(process.env.PORT || 3000, function (err){
     console.log('server started on port 3000');
 
 })
+
+
