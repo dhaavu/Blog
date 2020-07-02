@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
-
+const ObjectId = mongoose.Schema.ObjectId;
 var blog = new mongoose.Schema({
+  
    username: String,
    category: String, 
    image: String,

@@ -13,10 +13,10 @@ var nodemailer = require("nodemailer");
 var crypto = require("crypto"); 
 var Blog  = require("./models/blog"); 
 var Comment     = require("./models/comments"); 
+const blog = require("./models/blog");
 
 
-//mongodb://localhost/cxamplified
-mongoose.connect("mongodb+srv://dhaval:Welcome30@cluster0-71yob.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true , autoIndex: true,} ,  function (err){
+mongoose.connect("mongodb://localhost/cxamplified",   function (err){
     if (err)
     console.log("error changed  connecting to database  ", err);
     else
@@ -235,26 +235,25 @@ app.post('/forgot', function(req, res, next) {
     Main routes 
 ***********************/ 
 
-app.get('/', function (req, res){
 
-  Blog.find( {},  function(err, allBlogs){
-    if(err){
-        console.log(err);
-        res.render("maintenence"); 
-    } else {
-      console.log(allBlogs); 
-       res.render("home",{Blogs:allBlogs});
+app.get('/blogs/:id',   function (req, res)
+{
+  console.log("request Id: " + req.params.id); 
+  blog.find( {_id:req.params.id}, function (err, blogData){
+
+    if(err){ console.log("Error finding the Blog: "+ err)}
+    else {
+
+      res.render('blog', {doc: blogData});
+
     }
- });
+
+  }); 
+  
+
 
 
 });
-
-app.get('/detail', isLoggedIn,   function (req, res)
-{
-    res.render('detail');
-
-}); 
 
 app.get('/settings', isLoggedIn,   function (req, res)
 {
@@ -298,6 +297,21 @@ app.post("/createBlog", isLoggedIn, function(req, res){
           res.redirect("/");
       }
   });
+});
+
+app.get('/', function (req, res){
+
+  Blog.find( {},  function(err, allBlogs){
+    if(err){
+        console.log(err);
+        res.render("maintenence"); 
+    } else {
+      console.log(allBlogs); 
+       res.render("home",{Blogs:allBlogs});
+    }
+ });
+
+
 });
 
 app.listen(process.env.PORT || 3000, function (err){
